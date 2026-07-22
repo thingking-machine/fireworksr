@@ -428,7 +428,7 @@ class MachineApp {
         if (this.settings.machine.instructions) return true;
         // otherwise show popup and wait for them
         showInstructionsPopup(this.settings.machine.default_instruction); // Show pop-up to ask for instructions
-        return false; // Indicate that we couldn't get a token
+        return false; // Indicate that we couldn't get instructions
       }
     }
   };
