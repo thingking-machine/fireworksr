@@ -14,27 +14,8 @@ self.onmessage = async function(event) {
 
 
     try {
-        // --- 2. Fetch instruction ---
-        let instructionText; // Declare here to ensure it's in scope
-        try {
-            console.log(`Worker: Fetching the Machine instruction from ${machineConfig.server}`);
-            const instructionResponse = await fetch(machineConfig.server + '/' + machineConfig.instructions_file, {mode: "cors"});
-            if (!instructionResponse.ok) {
-                console.log(`Worker: HTTP error fetching instruction! status: ${instructionResponse.status}. Using default instruction.`);
-                // Default instruction if fetching fails or file not found
-                instructionText = "You are a helpful assistant.";
-            } else {
-                instructionText = (await instructionResponse.text()).trim();
-                console.log('Worker: Instruction fetched successfully.');
-                console.log('Worker: Instruction:', instructionText);
-            }
-        } catch (fetchError) {
-            console.error('Worker: Error during instruction file fetch:', fetchError.message, '. Using default instruction.');
-            instructionText = "You are a helpful assistant."; // Default instruction on any fetch error
-        }
-
         // --- 3. Prepare messages for the API call ---
-        const systemInstructionMessage = { role: "system", content: instructionText };
+        const systemInstructionMessage = { role: "system", content: llmSettings.instructions };
         let messagesForApi;
 
         // Check if the main thread sent any messages
