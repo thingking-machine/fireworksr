@@ -9,6 +9,10 @@ import {
   showTokenPopup,
   hideTokenPopup
 } from './token_popup.mjs';
+import {
+  showInstructionsPopup,
+  hideInstructionsPopup
+} from "./instructions_popup.mjs";
 
 /**
  * Manages the entire state and behavior of the machine page application.
