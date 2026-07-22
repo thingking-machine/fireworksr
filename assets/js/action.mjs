@@ -108,6 +108,7 @@ class MachineApp {
       instructionsPopupFileButton: document.getElementById('instructionsPopupFileButton'),
       loadingOverlay: document.getElementById('loading-overlay'),
       tokenPopupInput: document.getElementById('tokenPopupInput'),
+      instructionsPopupInput: document.getElementById('instructionsPopupInput')
     };
     
     // Make the dialogue wrapper programmatically focusable
@@ -155,6 +156,7 @@ class MachineApp {
   };
   
   _handleInstructionsSave = () => {
+    console.log('What', this)
     const instructionsInputVal = this.elements.instructionsPopupInput.value;
     if (instructionsInputVal && instructionsInputVal.trim()) {
       this.settings.machine.instructions = instructionsInputVal.trim();
