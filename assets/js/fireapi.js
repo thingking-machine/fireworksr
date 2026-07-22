@@ -15,7 +15,7 @@ self.onmessage = async function(event) {
 
     try {
         // --- 3. Prepare messages for the API call ---
-        const systemInstructionMessage = { role: "system", content: llmSettings.instructions };
+        const systemInstructionMessage = { role: "system", content: machineConfig.instructions };
         let messagesForApi;
 
         // Check if the main thread sent any messages
@@ -33,7 +33,7 @@ self.onmessage = async function(event) {
 
         // --- 4. Prepare the final API payload ---
         const defaultApiParameters = {
-            model: llmSettings.model || machineConfig.llm,
+            model: llmSettings.model,
             max_tokens: llmSettings.max_tokens || 4096,
             reasoning_effort: llmSettings.reasoning_effort || "high",
             prompt_truncate_len: llmSettings.prompt_truncate_len || 10000,
@@ -46,6 +46,7 @@ self.onmessage = async function(event) {
             n: 1,
             ignore_eos: false,
             stop: "stop",
+            echo: false,
             response_format: {"type":"text"},
             stream: false,
             context_length_exceeded_behavior: "truncate"
